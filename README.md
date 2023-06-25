@@ -1,6 +1,6 @@
 # [![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7&style=for-the-badge)](https://stand-with-ukraine.pp.ua) [Stand with the people of Ukraine: How to Help](https://stand-with-ukraine.pp.ua)
 
-ResourceLifetime
+ResourceLifetime.Disposables
 ================
 
 [![nuget version](https://img.shields.io/badge/Nuget-v0.0.0.1-blue)](https://www.nuget.org/packages/ResourceLifetime.Disposables)
