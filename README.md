@@ -2,6 +2,9 @@
 
 # ResourceLifetime
 
+[![nuget version](https://img.shields.io/badge/Nuget-v0.0.0.1-blue)](https://www.nuget.org/packages/ResourceLifetime.Disposables)
+[![nuget downloads](https://img.shields.io/nuget/dt/ResourceLifetime.Disposables?label=Downloads)](https://www.nuget.org/packages/ResourceLifetime.Disposables)
+
 `DisposableGroup` Represents a group of disposable resources that are disposed together.
 
 The purpose is the same as [CompositeDisposable](https://github.com/dotnet/reactive/blob/main/Rx.NET/Source/src/System.Reactive/Disposables/CompositeDisposable.cs)
