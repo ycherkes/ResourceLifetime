@@ -7,8 +7,14 @@ namespace ResourceLifetime.Disposables;
 
 public sealed class DisposableGroup : IAsyncDisposable, IDisposable, IEnumerable
 {
+    private readonly bool _throwExceptions;
     private bool _disposed;
     private readonly List<object> _disposables = new();
+
+    public DisposableGroup(bool throwExceptions = false)
+    {
+        _throwExceptions = throwExceptions;
+    }
 
     public void Add(IDisposable disposable)
     {
@@ -66,7 +72,7 @@ public sealed class DisposableGroup : IAsyncDisposable, IDisposable, IEnumerable
             {
                 disposable.Dispose();
             }
-            else
+            else if(_throwExceptions)
             {
                 throw new InvalidOperationException($"{toDispose[i].GetType().FullName}' type only implements IAsyncDisposable. Use DisposeAsync to dispose.");
             }

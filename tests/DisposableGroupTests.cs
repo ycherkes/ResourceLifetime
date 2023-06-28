@@ -62,7 +62,7 @@ namespace ResourceLifetime.UnitTests
             var asyncDisposable = new Mock<IAsyncDisposable>();
             asyncDisposable.Setup(df => df.DisposeAsync());
 
-            var disposableGroup = new DisposableGroup
+            var disposableGroup = new DisposableGroup(throwExceptions: true)
             {
                 asyncDisposable.Object
             };
@@ -70,6 +70,52 @@ namespace ResourceLifetime.UnitTests
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => disposableGroup.Dispose());
             asyncDisposable.Verify(d => d.DisposeAsync(), Times.Never);
+        }
+
+        [Fact]
+        public void SkipsDisposingSilently_WhenSynchronouslyDisposingAsyncDisposable()
+        {
+            // Arrange
+            var asyncDisposable = new Mock<IAsyncDisposable>();
+            asyncDisposable.Setup(df => df.DisposeAsync());
+
+            var disposableGroup = new DisposableGroup(throwExceptions: false)
+            {
+                asyncDisposable.Object
+            };
+
+            // Act
+            disposableGroup.Dispose();
+
+            // Assert
+            asyncDisposable.Verify(d => d.DisposeAsync(), Times.Never);
+        }
+
+        private event EventHandler? MyEvent;
+
+        [Fact]
+        public void UnsubscribeViaDispose()
+        {
+            void MyEventHandler(object? sender, EventArgs e)
+            { 
+                
+            }
+
+            MyEvent += MyEventHandler;
+
+            // Arrange
+            var disposable = Disposable.Create(() => MyEvent -= MyEventHandler);
+
+            var disposableGroup = new DisposableGroup
+            {
+                disposable
+            };
+
+            // Act
+            disposableGroup.Dispose();
+
+            // Assert
+            Assert.Null(MyEvent);
         }
     }
 }
