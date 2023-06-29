@@ -3,7 +3,7 @@
 ResourceLifetime.Disposables
 ================
 
-[![nuget version](https://img.shields.io/badge/Nuget-v0.0.0.1-blue)](https://www.nuget.org/packages/ResourceLifetime.Disposables)
+[![nuget version](https://img.shields.io/badge/Nuget-v0.0.0.2-blue)](https://www.nuget.org/packages/ResourceLifetime.Disposables)
 [![nuget downloads](https://img.shields.io/nuget/dt/ResourceLifetime.Disposables?label=Downloads)](https://www.nuget.org/packages/ResourceLifetime.Disposables)
 
 `DisposableGroup` Represents a group of disposable resources that are disposed together.
