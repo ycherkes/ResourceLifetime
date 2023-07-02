@@ -96,9 +96,8 @@ namespace ResourceLifetime.UnitTests
         [Fact]
         public void UnsubscribeViaDispose()
         {
-            void MyEventHandler(object? sender, EventArgs e)
-            { 
-                
+            static void MyEventHandler(object? sender, EventArgs e)
+            {
             }
 
             MyEvent += MyEventHandler;

@@ -23,15 +23,7 @@ public sealed class DisposableGroup : IAsyncDisposable, IDisposable, IEnumerable
             throw new ArgumentNullException(nameof(disposable));
         }
 
-        lock (_disposables)
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException(typeof(DisposableGroup).FullName);
-            }
-
-            _disposables.Add(disposable);
-        }
+        AddCore(disposable);
     }
 
     public void Add(IAsyncDisposable asyncDisposable)
@@ -41,6 +33,21 @@ public sealed class DisposableGroup : IAsyncDisposable, IDisposable, IEnumerable
             throw new ArgumentNullException(nameof(asyncDisposable));
         }
 
+        AddCore(asyncDisposable);
+    }
+
+    public void Add<T>(T disposable) where T : IDisposable, IAsyncDisposable
+    {
+        if (disposable == null)
+        {
+            throw new ArgumentNullException(nameof(disposable));
+        }
+
+        AddCore(disposable);
+    }
+    
+    private void AddCore(object disposable)
+    {
         lock (_disposables)
         {
             if (_disposed)
@@ -48,13 +55,8 @@ public sealed class DisposableGroup : IAsyncDisposable, IDisposable, IEnumerable
                 throw new ObjectDisposedException(typeof(DisposableGroup).FullName);
             }
 
-            _disposables.Add(asyncDisposable);
+            _disposables.Add(disposable);
         }
-    }
-
-    public void Add<T>(T disposable) where T : IDisposable, IAsyncDisposable
-    {
-        Add((IDisposable)disposable);
     }
 
     public void Dispose()
