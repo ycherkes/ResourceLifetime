@@ -97,8 +97,7 @@ namespace ResourceLifetime.UnitTests
         public void UnsubscribeViaDispose()
         {
             static void MyEventHandler(object? sender, EventArgs e)
-            { 
-                
+            {
             }
 
             MyEvent += MyEventHandler;
