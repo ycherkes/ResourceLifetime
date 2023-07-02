@@ -6,7 +6,7 @@
 	<Nullable>enable</Nullable>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<Copyright>Yevhen Cherkes</Copyright>
-	<Version>0.0.0.2</Version>
+	<Version>0.0.0.3</Version>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<RepositoryUrl>https://github.com/ycherkes/ResourceLifetime</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
