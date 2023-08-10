@@ -59,6 +59,8 @@ public sealed class DisposableGroup : IAsyncDisposable, IDisposable, IEnumerable
         }
     }
 
+    // Copied from the source code of Microsoft.Extensions.DependencyInjection
+    // https://github.com/dotnet/runtime/blob/219392ee65562aebaeee9cb27a60a6536eb60ef7/src/libraries/Microsoft.Extensions.DependencyInjection/src/ServiceLookup/ServiceProviderEngineScope.cs#L120
     public void Dispose()
     {
         var toDispose = BeginDispose();
